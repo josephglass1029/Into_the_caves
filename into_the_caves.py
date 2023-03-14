@@ -1,23 +1,21 @@
 from sys import exit
 import os
-import keyboard
 
-encountered_areas = set()
+# These lists allow us to track if the player has already completed an encounter in a given area.
+encountered_areas = []
+listen = []
+search = []
+# mouth_answer = ""
 
 def entry_1():
 	print("""
 The room you are in is fifty feet square, with 10' wide exits in the middle of 
 the north, south, east, and west walls. The ceiling of the room is 15' up, but 
 the corridors are only 10' tall. The walls, floor, and ceiling are made of 
-rough rock.""")
-	print("Press any key to continue...")
-	input()
-	os.system('cls' if os.name=='nt' else 'clear')
-	print("""
-There are some cracks and crevices in the rock walls, all very small. Standing 
-in the exact center of the room is a stone statue of a woman in armor. You examine
-it carefully, and finally even touch it — but it is merely a statue, nothing 
-magical or special.""")
+rough rock. There are some cracks and crevices in the rock walls, all very small.
+Standing in the exact center of the room is a stone statue of a woman in armor. 
+You examine it carefully, and finally even touch it — but it is merely a statue,
+nothing magical or special.""")
 	print("Press any key to continue...")
 	input()
 	os.system('cls' if os.name=='nt' else 'clear')
@@ -32,9 +30,11 @@ lamp helps, but shadows linger in the corners of this large room. Do you want to
 	choice = input("> ")
 
 	if choice == "1":
+		listen.append("statue")
 		os.system('cls' if os.name=='nt' else 'clear')
 		entry_42()
 	elif choice == "2":
+		search.append("statue")
 		os.system('cls' if os.name=='nt' else 'clear')
 		entry_57()
 	elif choice == "3":
@@ -138,7 +138,7 @@ def entry_10():
 		entry_9()
 	elif choice == "n":
 		print("""The corridor goes 20' north from the room and then turns right.
-You peek around the corner, and see that the corridor goes 20' and opens into another room. Press any key to continue.""")
+You peek around the corner, and see that the corridor goes 20' and opens into another room. Press any key to continue...""")
 		input()
 		os.system('cls' if os.name=='nt' else 'clear')
 		entry_54()
@@ -311,52 +311,41 @@ The bag contains 10 sp, 5 gp, and — a key! Now do you want to:
 def entry_22():
 	#print("Have you already explored this area of the dungeon? (y/n)")
 	#choice = input("> ").lower()
-	
 	if "mouth" in encountered_areas:
 		entry_39()
 	else:
 		print("""
 The room looks like Entry 22 Map (add it to your map):
-You enter the strange room to investigate. The room is empty and clean, and the
-only feature is the orange mouth on the far wall, about 8' long. You search the
-room, listening and looking carefully, but you find nothing.""")
-		print("Press any key to continue...")
-		input()
+You enter the strange room to investigate. The room is empty and clean, and the only feature is the orange mouth on the
+far wall, about 8' long. You search the room, listening and looking carefully, but you find nothing. Suddenly, as you are
+about to leave, the lips of the giant mouth move, and in a big booming bass voice it says, "Surprise! You are here for 
+double-or-nothing! Ready or not, here we go. O-T-T-F-F-S-S. What's next in line? If you solve this riddle, your treasure 
+will double. If you fail, it will all disappear. What is your answer?" If you try to leave, you find the way blocked by an
+invisible force. "You must answer, y'know!" bellows the mouth.""")
+		mouth_answer = input("Think about it, Type your answer below and then press any key to continue...")
 		os.system('cls' if os.name=='nt' else 'clear')
-		print("""
-Suddenly, as you are about to leave, the lips of the giant mouth move, and in a
-big booming bass voice it says, "Surprise! You are here for double-or-nothing! 
-Ready or not, here we go. O-T-T-F-F-S-S. What's next in line? If you solve this 
-riddle, your treasure will double. If you fail, it will all disappear. What is 
-your answer?" If you try to leave, you find the way blocked by an invisible force.
-"You must answer, y'know!" bellows the mouth. Think about it, and decide what the
-answer is. Then press any key to continue...""")
-	input()
-	os.system('cls' if os.name=='nt' else 'clear')
-	entry_82()
+		entry_82(mouth_answer.capitalize())
 
 def entry_23():
 	print("You go back to the room where the giant rats were and continue through, arriving back at the first room.")
-	print("Press any key to continue.")
+	print("Press any key to continue...")
 	input()
 	os.system('cls' if os.name=='nt' else 'clear')
 	entry_58()
 
 def entry_24():
 	print("""
-You suddenly feel different (either more or less weighted down, depending on your answer).
-Whatever answer you gave, the mouth laughs and says "Come back again some time!"
-The invisible barrier is gone, and you can leave the room.
+The mouth laughs and says "Come back again some time!" The invisible barrier is gone, and you can leave the room.
 You cannot find anything more here, nor will the mouth speak to you again.""")
-	print("Press any key to continue.")
+	print("Press any key to continue...")
 	input()
-	encountered_areas.add("mouth")
+	encountered_areas.append("mouth")
 	os.system('cls' if os.name=='nt' else 'clear')
 	entry_40()
 
 def entry_25():
 	print("You decide that the rats look dangerous, and you head back the way you came. The rats don't notice.")
-	print("Press any key to continue.")
+	print("Press any key to continue...")
 	input()
 	os.system('cls' if os.name=='nt' else 'clear')
 	entry_58()
@@ -427,7 +416,7 @@ def entry_29():
 def entry_30():
 	print("""The skeletons ignore your chatter, and swing again. One of them hits you,
 doing 2 more points of damage.""")
-	print("Press any key to continue.")
+	print("Press any key to continue...")
 	input()
 	os.system('cls' if os.name=='nt' else 'clear')
 	entry_26()
@@ -446,14 +435,14 @@ def entry_31():
 
 def entry_32():
 	print("You decide to go back. The goblins don't notice you, and you return to the statue room.")
-	print("Press any key to continue.")
+	print("Press any key to continue...")
 	input()
 	os.system('cls' if os.name=='nt' else 'clear')
 	entry_58()
 
 def entry_33():
 	print("You decide to attack the goblins before they can get help. You leap out and block the first goblin's escape, and they both draw swords and attack you. Press any key to run the battle normally.")
-	print("Press any key to continue.")
+	print("Press any key to continue...")
 	input()
 	os.system('cls' if os.name=='nt' else 'clear')
 	entry_85()
@@ -496,28 +485,28 @@ One swings and hits you, for 2 points of damage. Do you want to:
 def entry_36():
 	print("""
 You decide to go back to the start. Going west from here, the corridor turns south.
-You follow it back to the statue room. Press any key to continue.""")
+You follow it back to the statue room. Press any key to continue...""")
 	input()
 	os.system('cls' if os.name=='nt' else 'clear')
 	entry_58()
 
 def entry_37():
 	print("You go back to the room where you first found the goblins.")
-	print("Press any key to continue.")
+	print("Press any key to continue...")
 	input()
 	os.system('cls' if os.name=='nt' else 'clear')
 	entry_9()
 
 def entry_38():
 	print("You go east down the long corridor, around the corner heading south, and come to the side passage leading into the strange room.")
-	print("Press any key to continue.")
+	print("Press any key to continue...")
 	input()
 	os.system('cls' if os.name=='nt' else 'clear')
 	entry_49()
 
 def entry_39():
 	print("The mouth roars, \"YOU again?! Go away, pest!\" You can't find anything of value here.")
-	print("Press any key to continue.")
+	print("Press any key to continue...")
 	input()
 	os.system('cls' if os.name=='nt' else 'clear')
 	entry_40()
@@ -540,7 +529,7 @@ def entry_40():
 
 def entry_41():
 	print("The creature is feasting on rust, and ignores you. You run past it through the room and arrive back at the statue room.")
-	print("Press any key to continue.")
+	print("Press any key to continue...")
 	input()
 	os.system('cls' if os.name=='nt' else 'clear')
 	entry_58()
@@ -1044,28 +1033,29 @@ Searching the room, you find 100 cp and 100 sp scattered in the messy rat lair, 
 		entry_78()
 
 def entry_79():
-	print("""If you have already been through this part of the dungeon, read 76. Otherwise, continue:
-The corridor goes 50' east and opens into another room. What are you expecting here, and why? You may have found one or two clues.
-1. If you haven't found or heard any clues.
-2. If you only found a note that mentioned creatures.
-3. If you only heard creature sounds.
-4. If you did both (heard noise and found a note).""")
-	choice = input("> ")
+	if "rats" not in encountered_areas:
+		print("The corridor goes 50' east and opens into another room.")
+				# If you have already been through this part of the dungeon, read 76. Otherwise, continue:
+				# What are you expecting here, and why? You may have found one or two clues.
 
-	if choice == "1":
-		os.system('cls' if os.name=='nt' else 'clear')
-		entry_11()
-	elif choice == "2":
-		os.system('cls' if os.name=='nt' else 'clear')
-		entry_44()
-	elif choice == "3":
-		os.system('cls' if os.name=='nt' else 'clear')
-		entry_71()
-	elif choice == "4":
-		os.system('cls' if os.name=='nt' else 'clear')
-		entry_59()
+		choice = input("> ")
+
+		if "statue" in listen and "statue" in search: # 4. If you did both (heard noise and found a note).
+			os.system('cls' if os.name=='nt' else 'clear')
+			entry_59()
+		elif "statue" in listen:# 3. If you only heard creature sounds.
+			os.system('cls' if os.name=='nt' else 'clear')
+			entry_71()
+		elif "statue" in search: # 2. If you only found a note that mentioned creatures.
+			os.system('cls' if os.name=='nt' else 'clear')
+			entry_44()
+		elif "statue" not in listen and "statue" not in search: # 1. If you haven't found or heard any clues.
+			os.system('cls' if os.name=='nt' else 'clear')
+			entry_11()
+		else:
+			entry_79()
 	else:
-		entry_79()
+		entry_76()
 
 def entry_80():
 	print("""You put the key in the lock and turn until you hear it "click." Putting the key away you open the door.
@@ -1113,15 +1103,26 @@ The chest comes apart, coins falling everywhere, and the creature gleefully turn
 	else:
 		entry_81()
 
-def entry_82():
-	print("""If you guess the answer correctly, you may double the amount of treasure you have.
-If not, it all disappears, and your character is left with none.
-The answer is "E." The letters stand for One, Two, Three, Four, Five, Six, and Seven.
-The "next in the series" is Eight!.""")
-	print("Press any key to continue...")
-	input()
-	os.system('cls' if os.name=='nt' else 'clear')
-	entry_24()
+def entry_82(mouth_answer):
+	if mouth_answer == "E":
+		print(mouth_answer)
+		print("Correct! The answer is \"E.\" The letters stand for One, Two, Three, Four, Five, Six, and Seven.")
+		print("The \"next in the series\" is Eight!.")
+		print("You suddenly feel different, more weighted down as whatever treasure you had is now doubled!")
+		print("Press any key to continue...")
+		input()
+		os.system('cls' if os.name=='nt' else 'clear')
+		entry_24()
+# print("""If you guess the answer correctly, you may double the amount of treasure you have. If not, it all disappears, and your character is left with none.
+	else:
+		print(mouth_answer)
+		print("Wrong! The answer is \"E.\" The letters stand for One, Two, Three, Four, Five, Six, and Seven.")
+		print("The \"next in the series\" is Eight!.")
+		print("You suddenly feel different, less weighted down as whatever treasure you had is now gone!")
+		print("Press any key to continue...")
+		input()
+		os.system('cls' if os.name=='nt' else 'clear')
+		entry_24()
 
 def entry_83():
 	print("""You are having a battle with giant rats. Three of them are here, unless you scared one off. The area looks like Entry 83 Map.
@@ -1135,7 +1136,7 @@ All the rats will fight until dead. If you decide to run away, one rat will bite
 	
 	if choice == "1":
 		os.system('cls' if os.name=='nt' else 'clear')
-		encountered_areas.add("rats")
+		encountered_areas.append("rats")
 		entry_78()
 	elif choice == "2":
 		os.system('cls' if os.name=='nt' else 'clear')
@@ -1270,12 +1271,12 @@ WEAPONS AND EQUIPMENT
 Item Cost (in gp)
 
 weapons = {
-    "Dagger": "3",
-    "Sword": "10"
+	"Dagger": "3",
+	"Sword": "10"
 }
 
 armor = {
-    "Leather Armor": "20",
+	"Leather Armor": "20",
 	"Chain Mail Armor": "40",
 	"Plate Mail Armor": "60",
 	"Shield": "10"
@@ -1323,6 +1324,7 @@ Press any other key to exit the game.""")
 	else:
 		exit(0)
 
+os.system('cls' if os.name=='nt' else 'clear')
 entry_1()
 
 # Tasks:
@@ -1334,4 +1336,5 @@ entry_1()
 # 
 # 
 # 
+#
 # Th!$ l!n3 !s 0n!y h3r3 f0r n3rd cr3d!
