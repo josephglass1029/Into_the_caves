@@ -5,9 +5,10 @@ import os
 encountered_areas = []
 listen = []
 search = []
-# mouth_answer = ""
+entry_map = []
 
 def entry_1():
+	entry_map.append("entry 1 map")
 	print("""
 The room you are in is fifty feet square, with 10' wide exits in the middle of 
 the north, south, east, and west walls. The ceiling of the room is 15' up, but 
@@ -15,17 +16,13 @@ the corridors are only 10' tall. The walls, floor, and ceiling are made of
 rough rock. There are some cracks and crevices in the rock walls, all very small.
 Standing in the exact center of the room is a stone statue of a woman in armor. 
 You examine it carefully, and finally even touch it — but it is merely a statue,
-nothing magical or special.""")
-	print("Press any key to continue...")
-	input()
-	os.system('cls' if os.name=='nt' else 'clear')
-	print("""
-You have entered this 50' square room by the southern corridor, which leads out
-to fresh air and sunlight. The other corridors are dark. The light from your 
-lamp helps, but shadows linger in the corners of this large room. Do you want to:""")
-	print("1. Stop and listen?")
-	print("2. Search the room?")
-	print("3. Go down a corridor?")
+nothing magical or special. You have entered this 50' square room by the southern
+corridor, which leads out to fresh air and sunlight. The other corridors are dark.
+The light from your lamp helps, but shadows linger in the corners of this large room.
+Do you want to:
+1. Stop and listen?
+2. Search the room?
+3. Go down a corridor?""")
 
 	choice = input("> ")
 
@@ -107,6 +104,7 @@ def entry_7():
 	entry_9()
 
 def entry_8():
+	entry_map.append("entry 8 map")
 	print("""After the turn, the corridor goes 50' west and opens into a room.
 Add Entry 8 Map and press any key to continue:""")
 	input()
@@ -131,14 +129,17 @@ def entry_9():
 		entry_9()
 
 def entry_10():
-	print("Have you already killed the monsters and taken the treasure from this part of the dungeon? (y/n)")
-	choice = input("> ").lower()
-	
-	if choice == "y":
+	if "2goblins" in encountered_areas:
 		entry_9()
-	elif choice == "n":
-		print("""The corridor goes 20' north from the room and then turns right.
-You peek around the corner, and see that the corridor goes 20' and opens into another room. Press any key to continue...""")
+  		# print("Have you already killed the monsters and taken the treasure from this part of the dungeon? (y/n)")
+		# choice = input("> ").lower()
+		# if choice == "y":
+		# 	entry_9()
+		# elif choice == "n":
+	else:
+		print("""
+The corridor goes 20' north from the room and then turns right. You peek around the corner, and see that the corridor
+goes 20' and opens into another room. Press any key to continue...""")
 		input()
 		os.system('cls' if os.name=='nt' else 'clear')
 		entry_54()
@@ -195,6 +196,7 @@ def entry_14():
 		entry_14()
 
 def entry_15():
+	entry_map.append("entry 15 map")
 	print("Have you already killed the monsters and taken the treasure from this part of the dungeon? (y/n)")
 	choice = input("> ").lower()
 	
@@ -282,12 +284,10 @@ The other one leaves, going north and turning left. Do you want to:
 		entry_20()
 
 def entry_21():
-	print("Have you already explored this area of the dungeon? (y/n)")
-	choice = input("> ").lower()
-	
-	if choice == "y":
+	if "entry 21 map" in entry_map:
 		entry_52()
-	elif choice == "n":
+	else:
+		entry_map.append("entry 21 map")
 		print("""Starting from the north wall of this room, the corridor goes 10' north, turns left (west) and goes 10' further,
 opening into the east wall of another room. There are more goblins here!
 But when they see you, they shriek and run through a stout door on the north wall, slamming it behind them.
@@ -309,8 +309,7 @@ The bag contains 10 sp, 5 gp, and — a key! Now do you want to:
 		entry_21()
 
 def entry_22():
-	#print("Have you already explored this area of the dungeon? (y/n)")
-	#choice = input("> ").lower()
+	entry_map.append("entry 22 map")
 	if "mouth" in encountered_areas:
 		entry_39()
 	else:
@@ -422,16 +421,11 @@ doing 2 more points of damage.""")
 	entry_26()
 
 def entry_31():
-	print("You go north from the strange room.")
-	print("Have you already explored this area of the dungeon? (y/n)")
-	choice = input("> ").lower()
-	
-	if choice == "y":
+	if "entry 53 map" in entry_map:
+		print("You go north from the strange room.")
 		entry_7()
-	elif choice == "n":
-		entry_8()
 	else:
-		entry_31()
+		entry_8()
 
 def entry_32():
 	print("You decide to go back. The goblins don't notice you, and you return to the statue room.")
@@ -542,6 +536,7 @@ def entry_42():
 	entry_1()
 
 def entry_43():
+	entry_map.append("entry 43 map")
 	print("""The corridor goes 20' to the west and opens into a room, which looks like Entry 43 Map (add it to your map):
 The room is empty, except for a few small piles of reddish dust. Do you want to:
 1. Go back?
@@ -690,7 +685,11 @@ def entry_52():
 	entry_9()
 
 def entry_53():
-	print("""If you have already mapped this of the dungeon, read 38. If not, continue:
+	entry_map.append("entry 53 map")
+	if "entry 53 map" in entry_map:
+		entry_38()
+	else:
+		print("""If you have already mapped this of the dungeon, read 38. If not, continue:
 The corridor goes 50' east from the room and then turns right, to the south.
 Peering around the corner, you see that the corridor goes 30' south, and a side passage then opens to the west.
 When you get to that point, you see that the side passage goes 10' west and opens into another room,
@@ -700,14 +699,12 @@ with blue walls and a huge orange mouth on the opposite wall. Add Entry 53 Map t
 	entry_49()
 
 def entry_54():
+	entry_map.append("entry 54 map")
 	print("The room looks like Entry 54 Map (add it to your map):")
-	print("Did you find or hear any clues? (y/n)")
-	choice = input("> ").lower()
-	
-	if choice == "y":
+	if "statue" in listen or "statue" in search:
 		os.system('cls' if os.name=='nt' else 'clear')
 		entry_19()
-	elif choice == "n":
+	elif "statue" not in listen or "statue" not in search:
 		os.system('cls' if os.name=='nt' else 'clear')
 		entry_18()
 	else:
@@ -729,6 +726,7 @@ def entry_56():
 	entry_86()
  
 def entry_57():
+	entry_map.append("entry 57 map")
 	print("""You search the room carefully, and you find a small scrap of paper in a niche (small hole) in one wall.
 Opening it, you discover a note, written in the Common tongue:
 		RATS EAST
@@ -1058,6 +1056,8 @@ def entry_79():
 		entry_76()
 
 def entry_80():
+	entry_map.append("entry 80A map")
+	entry_map.append("entry 80B map")
 	print("""You put the key in the lock and turn until you hear it "click." Putting the key away you open the door.
 There is a small room behind the door! The area looks like Entry 80A Map (add it to your map):
 The room is empty except for one large chest by one wall. You walk over to it, and discover that it's made of heavy wood with metal bands around it.
@@ -1105,7 +1105,6 @@ The chest comes apart, coins falling everywhere, and the creature gleefully turn
 
 def entry_82(mouth_answer):
 	if mouth_answer == "E":
-		print(mouth_answer)
 		print("Correct! The answer is \"E.\" The letters stand for One, Two, Three, Four, Five, Six, and Seven.")
 		print("The \"next in the series\" is Eight!.")
 		print("You suddenly feel different, more weighted down as whatever treasure you had is now doubled!")
@@ -1115,7 +1114,6 @@ def entry_82(mouth_answer):
 		entry_24()
 # print("""If you guess the answer correctly, you may double the amount of treasure you have. If not, it all disappears, and your character is left with none.
 	else:
-		print(mouth_answer)
 		print("Wrong! The answer is \"E.\" The letters stand for One, Two, Three, Four, Five, Six, and Seven.")
 		print("The \"next in the series\" is Eight!.")
 		print("You suddenly feel different, less weighted down as whatever treasure you had is now gone!")
@@ -1125,6 +1123,7 @@ def entry_82(mouth_answer):
 		entry_24()
 
 def entry_83():
+	entry_map.append("entry 83 map")
 	print("""You are having a battle with giant rats. Three of them are here, unless you scared one off. The area looks like Entry 83 Map.
 GIANT RATS: 17 D: 1d3
 You: 10 hp: 2 each
@@ -1144,7 +1143,6 @@ All the rats will fight until dead. If you decide to run away, one rat will bite
 	else:
 		os.system('cls' if os.name=='nt' else 'clear')
 		entry_83()
-	
 
 def entry_84():
 	print("""You are fighting two skeletons.
@@ -1185,6 +1183,7 @@ Use the checklist to be sure that you are running the battle correctly.
 		os.system('cls' if os.name=='nt' else 'clear')
 		entry_73()
 	elif choice == "2":
+		encountered_areas.append("2goblins")
 		os.system('cls' if os.name=='nt' else 'clear')
 		entry_75()
 	else:
@@ -1231,6 +1230,7 @@ Use the checklist to be sure that you are running the battle correctly.
 		os.system('cls' if os.name=='nt' else 'clear')
 		entry_73()
 	elif choice == "2":
+		encountered_areas.append("3goblins")
 		os.system('cls' if os.name=='nt' else 'clear')
 		entry_65()
 	elif choice == "3":
@@ -1328,13 +1328,10 @@ os.system('cls' if os.name=='nt' else 'clear')
 entry_1()
 
 # Tasks:
-# Make a variable to check if the monsters have been killed. If not conduct battle. If so, check if treasure has been taken.
+# Done - Make a variable to check if the monsters have been killed. If not conduct battle. If so, check if treasure has been taken.
 # Create a way to escape out of the game at any point by hitting the esc key or q key.
 # 
 # 
 # 
 # 
-# 
-# 
-#
 # Th!$ l!n3 !s 0n!y h3r3 f0r n3rd cr3d!
