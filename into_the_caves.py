@@ -1268,51 +1268,41 @@ def entry_89():
 	print("""You want to go shopping. Instead of making an adventure out of it (like the beginning of this trip), you may simply imagine that you are visiting the various shops in town, buying whatever you need. The items you may buy — armor, weapons, and other equipment — are listed below, along with their prices. To make a shopping trip, first write down the items you want, and their prices, on a piece of scrap paper. Then add up the total cost. If you can afford what you want, subtract that total cost from your treasure. Write the items in the "Normal Items" section on the back of the Character Sheet. Be sure to write the new total treasure in the Money box.
 WEAPONS AND EQUIPMENT
 Item Cost (in gp)
-Weapons
-dagger
-Sword
-Armor
-Leather Armor
-Chain Mail Armor
-Plate Mail Armor
-Shield
-Other Equipment
-Backpack, leather
-Flask of Oil
-Lantern
-Mirror (hand-sized, steel)
-Pole (wood, 10' long)
-Rations:
-Iron Rations
-(preserved food for 1 person for 1 week)
-Standard Rations
-(unpreserved food for 1 person for 1 week)
-Rope (50' long)
-Sacks:
-Small
-Large
-Tinder Box (flint, steel, dry wood shavings and twigs)
-Torches (6)
-Waterskin (or wineskin)
-Wine (1 quart)
-3
-10
-20
-40
-60
-10
-52
-10
-5
-1
-15
-5
-1
-1
-2
-3
-1
-11
+
+weapons = {
+    "Dagger": "3",
+    "Sword": "10"
+}
+
+armor = {
+    "Leather Armor": "20",
+	"Chain Mail Armor": "40",
+	"Plate Mail Armor": "60",
+	"Shield": "10"
+}
+
+other_equipment = {
+	"Backpack, leather": "5",
+	"Flask of Oil": "2",
+	"Lantern": "10",
+	"Mirror (hand-sized, steel)": "5",
+	"Pole (wood, 10' long)": "1",
+	"Rope (50' long)": "1",
+	"Tinder Box (flint, steel, dry wood shavings and twigs)": "3",
+	"Torches (6)": "1",
+	"Waterskin (or wineskin)": "1",
+	"Wine (1 quart)": "1"
+}
+
+sacks = {
+	"Small": "1",
+	"Large": "2"
+}
+
+rations = {
+	"Iron Rations (preserved food for 1 person for 1 week)": "15",
+	"Standard Rations (unpreserved food for 1 person for 1 week)": "5"
+}
 (Note: There are more weapons and equipment available in group adventures. See the complete list in the center of this book.)""")  
 
 def entry_90():
@@ -1338,4 +1328,10 @@ entry_1()
 # Tasks:
 # Make a variable to check if the monsters have been killed. If not conduct battle. If so, check if treasure has been taken.
 # Create a way to escape out of the game at any point by hitting the esc key or q key.
+# 
+# 
+# 
+# 
+# 
+# 
 # Th!$ l!n3 !s 0n!y h3r3 f0r n3rd cr3d!
