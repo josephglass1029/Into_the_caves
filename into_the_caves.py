@@ -6,6 +6,12 @@ encountered_areas = []
 listen = []
 search = []
 entry_map = []
+experience_points = {
+	"Giant Rats": "5 each",
+	"Goblins": "5 each",
+	"Skeletons": "10 each",
+	"Rust Monster": "300"
+}
 
 def entry_1():
 	entry_map.append("entry 1 map")
@@ -1125,8 +1131,10 @@ def entry_82(mouth_answer):
 def entry_83():
 	entry_map.append("entry 83 map")
 	print("""You are having a battle with giant rats. Three of them are here, unless you scared one off. The area looks like Entry 83 Map.
-GIANT RATS: 17 D: 1d3
-You: 10 hp: 2 each
+GIANT RATS: 17
+You: 		10
+D: 			1d3
+hp: 		2 each
 Run the battle normally, using the Combat Checklist to be sure that you are doing it correctly. If you don't remember what "Id3" means, read the section on "Dice" again (page 12).
 All the rats will fight until dead. If you decide to run away, one rat will bite you as you turn to run (roll for damage). But then, if you are still alive, you can go back to the statue room. If so, read 58.
 1. If you kill all the rats.
@@ -1146,8 +1154,10 @@ All the rats will fight until dead. If you decide to run away, one rat will bite
 
 def entry_84():
 	print("""You are fighting two skeletons.
-SKELETONS: 16 D: 1d6
-You: 10 hp: 4 each
+SKELETONS: 16 
+You: 	   10
+D: 		   1d6
+hp:        4 each
 Use the checklist to run the battle. The skeletons will fight until slain.
 1. Run away.
 2. If you kill the skeletons.
@@ -1169,10 +1179,10 @@ Use the checklist to run the battle. The skeletons will fight until slain.
 
 def entry_85():
 	print("""You are fighting two goblins!
-GOBLINS:17
-You:11
-D:1d6
-hp:5 each
+GOBLINS: 17
+You:	 11
+D:		 1d6
+hp:		 5 each
 Remember to make two rolls for the monsters; each one gets a swing after you make yours.
 Use the checklist to be sure that you are running the battle correctly.
 1. Run away.
@@ -1192,8 +1202,10 @@ Use the checklist to be sure that you are running the battle correctly.
 
 def entry_86():
 	print("""You are fighting the Rust Monster!
-RUST MONSTER: 13 D: rust
-You: 15 hp: 15
+RUST MONSTER: 13
+You: 		  15
+D: 			  rust
+hp: 		  15
 Use the checklist to be sure that you are running the battle correctly. If the 
 rust monster hits you, it does no damage at all. Instead, it makes metal turn 
 to rust! As you run the battle, use the following notes to find the effects of
@@ -1217,8 +1229,10 @@ Note this special bonus on your scrap paper, and apply it to all battles until y
 
 def entry_87():
 	print("""You are fighting three goblins!
-GOBLINS: 17 D: 1d6
-You: 11 hp: 5 each
+GOBLINS: 17
+You:	 11
+D:		 1d6
+hp:		 5 each
 Remember to make three rolls for the monsters; each one gets a swing after you take yours.
 Use the checklist to be sure that you are running the battle correctly. 
 1. If you decide to run away.
