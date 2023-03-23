@@ -1,0 +1,49 @@
+listen
+1 > 42
+
+statue
+1 > 57
+
+rats
+1 > 58 > 79 > no clues > 11 > 83
+1 > 58 > 79 > note > 44 > 83
+1 > 58 > 79 > sounds > 71 > 83
+1 > 58 > 79 > both > 59 > back > 25 > 58
+1 > 58 > 79 > both > 59 > talk > 74 > 83 	| run > 58
+1 > 58 > 79 > both > 59 > attack > 68 > 83 	| dead > 90
+1 > 58 > 79 > both > 59 > scare > 77 > 83 	| dead rats > 78 > 17
+1 > 58 > 79 > both > 59 > scare > 77 > 83 	| dead rats > 78 > 6
+
+mouth
+1 > 58 > 79 > both > 59 > scare > 77 > 83 	| dead rats > 78 > 17 > 49 > 22 > 82 > 24 > 40 > 31
+1 > 58 > 79 > both > 59 > scare > 77 > 83 	| dead rats > 78 > 17 > 49 > 22 > 82 > 24 > 40 > 4
+
+2goblins
+
+
+3goblins
+
+
+rust
+1 > 58 > 43 > talk > 12 > 86
+1 > 58 > 43 > run > 56 > 86
+1 > 58 > 43 > fight > 86 > run east > 1
+1 > 58 > 43 > fight > 86 > run west > 28
+1 > 58 > 43 > fight > 86 > kill rust > 70 > 28
+1 > 58 > 43 > fight > 86 > dead rust > 70 > 6
+
+skeletons
+1 > 58 > 43 > fight > 86 > kill rust > 70 > 28 > 15 > 26 > talk > 30 > 26
+1 > 58 > 43 > fight > 86 > kill rust > 70 > 28 > 15 > 26 > turn > 47 > 26
+1 > 58 > 43 > fight > 86 > kill rust > 70 > 28 > 15 > 26 > run > 72 > 62 > 48
+1 > 58 > 43 > fight > 86 > kill rust > 70 > 28 > 15 > 26 > fight > 84 > run > 72
+1 > 58 > 43 > fight > 86 > kill rust > 70 > 28 > 15 > 26 > fight > 84 > dead skeletons > 13
+1 > 58 > 43 > fight > 86 > kill rust > 70 > 28 > 15 > 26 > fight > 84 > dead > 90
+1 > 58 > 43 > fight > 86 > kill rust > 70 > 28 > 15 > dead skeletons > 61
+
+treasure
+1 > 58 > 43 > fight > 86 > kill rust > 70 > 28 > 15 > 26 > fight > 84 > dead skeletons > 13 > 27 > key > 80
+1 > 58 > 43 > fight > 86 > kill rust > 70 > 28 > 15 > 26 > fight > 84 > dead skeletons > 13 > 27 > no key > 46
+
+
+1 > 58 > 43 > fight > 86 > kill rust > 70 > 28 > 14 > 3 > exit
