@@ -5,6 +5,7 @@ import os
 encountered_areas = []
 listen = []
 search = []
+key = False
 entry_map = []
 experience_points = {
 	"Giant Rats": "5 each",
@@ -126,22 +127,21 @@ def entry_9():
 	choice = input("> ")
 
 	if choice == "1":
+		os.system('cls' if os.name=='nt' else 'clear')
 		entry_21()
 	elif choice == "2":
+		os.system('cls' if os.name=='nt' else 'clear')
 		entry_53()
 	elif choice == "3":
+		os.system('cls' if os.name=='nt' else 'clear')
 		entry_36()
 	else:
+		os.system('cls' if os.name=='nt' else 'clear')
 		entry_9()
 
 def entry_10():
 	if "2goblins" in encountered_areas:
 		entry_9()
-  		# print("Have you already killed the monsters and taken the treasure from this part of the dungeon? (y/n)")
-		# choice = input("> ").lower()
-		# if choice == "y":
-		# 	entry_9()
-		# elif choice == "n":
 	else:
 		print("""
 The corridor goes 20' north from the room and then turns right. You peek around the corner, and see that the corridor
@@ -186,7 +186,9 @@ Do you want to:
 		entry_13()
 
 def entry_14():
-	print("""You go west, and come to another room. It has an exit south, leading outside, and another corridor heading west. You don't want to go west, the ghouls are in that direction. You recognize this room as the entrance for your very first adventure! This is where you hit the goblin, and he ran away. Do you want to:
+	print("""You go west, and come to another room. It has an exit south, leading outside, and another corridor heading west.
+You don't want to go west, the ghouls are in that direction. You recognize this room as the entrance for your very first adventure!
+This is where you hit the goblin, and he ran away. Do you want to:
 1. Go back East?
 2. Go South?""")
 	choice = input("> ")
@@ -202,17 +204,13 @@ def entry_14():
 		entry_14()
 
 def entry_15():
-	entry_map.append("entry 15 map")
-	print("Have you already killed the monsters and taken the treasure from this part of the dungeon? (y/n)")
-	choice = input("> ").lower()
-	
-	if choice == "y":
+	if "skeletons" in encountered_areas:
 		entry_61()
-	elif choice == "n":
+	else:
 		print("""The area looks like Entry 15 Map (add it to your map):
 The corridor goes north and opens into a room.
-As you peer into the room, you see two skeletons with rusty swords standing about 10' from you, around the corner.
-Without making a sound, they step forward, grinning horribly, and swing at you.
+As you peer into the room, you see two skeletons with rusty swords standing about 10' from you,
+around the corner. Without making a sound, they step forward, grinning horribly, and swing at you.
 One of them hits, for 2 points of damage. Press any key to continue the battle...""")
 	input()
 	os.system('cls' if os.name=='nt' else 'clear')
@@ -302,6 +300,8 @@ You search the room carefully and find one small bag by the door, apparently dro
 The bag contains 10 sp, 5 gp, and — a key! Now do you want to:
 1. Open the door?
 2. Go back?""")
+	global key
+	key = True
 	choice = input("> ")
 	
 	if choice == "1":
@@ -380,18 +380,15 @@ def entry_26():
 		entry_26()
 
 def entry_27():
-	print("""You carefully examine the door, and fine nothing strange about it. There is a keyhole in it. Have you found a key? (y/n)""")
-	choice = input("> ").lower()
+	# print("""You carefully examine the door, and fine nothing strange about it. There is a keyhole in it. Have you found a key? (y/n)""")
+	# choice = input("> ").lower()
 	
-	if choice == "y":
+	if key == True:
 		os.system('cls' if os.name=='nt' else 'clear')
 		entry_80()
-	elif choice == "n":
+	elif key == False:
 		os.system('cls' if os.name=='nt' else 'clear')
 		entry_46()
-	else:
-		os.system('cls' if os.name=='nt' else 'clear')
-		entry_27()
 
 def entry_28():
 	print("""The corridor goes only 10' west before connecting to another corridor heading north;
@@ -427,7 +424,7 @@ doing 2 more points of damage.""")
 	entry_26()
 
 def entry_31():
-	if "entry 53 map" in entry_map:
+	if "2goblins" in encountered_areas:
 		print("You go north from the strange room.")
 		entry_7()
 	else:
@@ -608,21 +605,13 @@ def entry_47():
 	entry_26()
 
 def entry_48():
-	print("""You get back to the Rust Monster room. Did you kill the Rust Monster?
-1. Yes
-2. No""")
-	choice = input("> ").lower()
-	
-	if choice == "1":
+	if "rust" in encountered_areas:
 		os.system('cls' if os.name=='nt' else 'clear')
 		entry_55()
-	elif choice == "2":
-		os.system('cls' if os.name=='nt' else 'clear')
-		entry_67()
 	else:
 		os.system('cls' if os.name=='nt' else 'clear')
-		entry_48()
-
+		entry_67()
+		
 def entry_49():
 	print("""You may go in and investigate the strange room, or you can go north or south. Do you want to:
 1. Go North?
@@ -806,9 +795,16 @@ To find how many Experience Points you have earned, read 88. You will also have 
 The shopping list is given in 89.""")
 
 def entry_61():
-	print("""You peer into the skeleton room, and see that nothing has changed.
-If you already investigated the door, there is nothing more to do here; read 62.
-If you want to investigate the door in this room, read 27.""")  
+	if "treasure" in encountered_areas:
+		os.system('cls' if os.name=='nt' else 'clear')
+		print("You peer into the skeleton room, and see that nothing has changed.")
+		entry_62()
+	else:
+		os.system('cls' if os.name=='nt' else 'clear')
+		entry_27()
+#        
+#If you already investigated the door, there is nothing more to do here; read 62.
+#If you want to investigate the door in this room, read 27.""")  
 
 def entry_62():
 	print("""You are at an intersection of the corridor to the north and the east-west corridor. Do you want to:
@@ -926,6 +922,7 @@ Suddenly, you hear more goblin noises from the north. Do you want to:
 		entry_69()
 
 def entry_70():
+	encountered_areas.append("rust")
 	print("""You have slain the horrible Rust Monster!
 Searching the room, you find 10 gems laying about, some in cracks and crevices, and some in the piles of rust.
 The total value of the gems is 600 gp! Now do you want to:
@@ -1131,10 +1128,10 @@ def entry_82(mouth_answer):
 def entry_83():
 	entry_map.append("entry 83 map")
 	print("""You are having a battle with giant rats. Three of them are here, unless you scared one off. The area looks like Entry 83 Map.
-GIANT RATS: 17
-You: 		10
-D: 			1d3
-hp: 		2 each
+GIANT RATS:	17
+You:		10
+D:		1d3
+hp:		2 each
 Run the battle normally, using the Combat Checklist to be sure that you are doing it correctly. If you don't remember what "Id3" means, read the section on "Dice" again (page 12).
 All the rats will fight until dead. If you decide to run away, one rat will bite you as you turn to run (roll for damage). But then, if you are still alive, you can go back to the statue room. If so, read 58.
 1. If you kill all the rats.
@@ -1154,10 +1151,10 @@ All the rats will fight until dead. If you decide to run away, one rat will bite
 
 def entry_84():
 	print("""You are fighting two skeletons.
-SKELETONS: 16 
-You: 	   10
-D: 		   1d6
-hp:        4 each
+SKELETONS:	16 
+You:		10
+D:		1d6
+hp:		4 each
 Use the checklist to run the battle. The skeletons will fight until slain.
 1. Run away.
 2. If you kill the skeletons.
@@ -1168,6 +1165,7 @@ Use the checklist to run the battle. The skeletons will fight until slain.
 		os.system('cls' if os.name=='nt' else 'clear')
 		entry_72()
 	elif choice == "2":
+		encountered_areas.append("skeletons")
 		os.system('cls' if os.name=='nt' else 'clear')
 		entry_13()
 	elif choice == "3":
@@ -1179,10 +1177,10 @@ Use the checklist to run the battle. The skeletons will fight until slain.
 
 def entry_85():
 	print("""You are fighting two goblins!
-GOBLINS: 17
-You:	 11
-D:		 1d6
-hp:		 5 each
+GOBLINS:	17
+You:		11
+D:		1d6
+hp:		5 each
 Remember to make two rolls for the monsters; each one gets a swing after you make yours.
 Use the checklist to be sure that you are running the battle correctly.
 1. Run away.
@@ -1202,37 +1200,52 @@ Use the checklist to be sure that you are running the battle correctly.
 
 def entry_86():
 	print("""You are fighting the Rust Monster!
-RUST MONSTER: 13
-You: 		  15
-D: 			  rust
-hp: 		  15
+RUST MONSTER:	13
+You:		15
+Damage:		rust
+hp:		15
 Use the checklist to be sure that you are running the battle correctly. If the 
 rust monster hits you, it does no damage at all. Instead, it makes metal turn 
-to rust! As you run the battle, use the following notes to find the effects of
-each hit.
-If you decide to run away, the monster gets one free attack, but only needs a 
-Hit Roll 9 or better. You can run away after that, but you can only run either
-east (back to the statue room) or west. If you run east, read 1; if you go west, read 28.
-If you kill the rust monster, read 70.
-If you have been here before, you might not have some of the items mentioned 
-below. Resume the battle wherever you left off, and remember to keep track of 
-the equipment you have left.
-First Hit: your shield turns to rust and falls apart.
-Now the Rust Monster only needs an 11 or better to hit you. Read the "Special Note" below.
-Second Hit: Your Armor turns to rust. Now the creature only needs a roll of 6 or higher to hit.
-Third Hit: Your sword turns to rust! You must get out a dagger if you want to continue the fight.
-Fourth Hit: Your dagger turns to rust! You have no more weapons. Read 60.
-Special Note: When you lose your armor or shield, you become easier to hit. 
-All monsters you encounter afterward will gain bonuses to their Hit Rolls. 
-If you lose your shield, give them a +1 bonus. If you lose your armor, give them a total bonus of + 7 to their Hit Rolls.
-Note this special bonus on your scrap paper, and apply it to all battles until you get new armor or shield.""")
+to rust!
+1. Run east
+2. Run west
+3. You killed the Rust Monster!""")
+# As you run the battle, use the following notes to find the effects of each hit.
+# If you decide to run away, the monster gets one free attack, but only needs a Hit Roll 9 or better.
+# You can run away after that, but you can only run either #east (back to the statue room) or west.
+# If you run east, read 1; if you go west, read 28.
+# If you kill the rust monster, read 70.
+# If you have been here before, you might not have some of the items mentioned below.
+# Resume the battle wherever you left off, and remember to keep track of the equipment you have left.
+# First Hit: your shield turns to rust and falls apart. Now the Rust Monster only needs an 11 or better to hit you. Read the "Special Note" below.
+# Second Hit: Your Armor turns to rust. Now the creature only needs a roll of 6 or higher to hit.
+# Third Hit: Your sword turns to rust! You must get out a dagger if you want to continue the fight.
+# Fourth Hit: Your dagger turns to rust! You have no more weapons. Read 60.
+# Special Note: When you lose your armor or shield, you become easier to hit. 
+# All monsters you encounter afterward will gain bonuses to their Hit Rolls. 
+# If you lose your shield, give them a +1 bonus. If you lose your armor, give them a total bonus of + 7 to their Hit Rolls.
+# Note this special bonus on your scrap paper, and apply it to all battles until you get new armor or shield.
+
+	choice = input("> ")
+	if choice == "1":
+		os.system('cls' if os.name=='nt' else 'clear')
+		entry_1()
+	elif choice == "2":
+		os.system('cls' if os.name=='nt' else 'clear')
+		entry_28()
+	elif choice == "3":
+		encountered_areas.append("rust")
+		os.system('cls' if os.name=='nt' else 'clear')
+		entry_70()
+	else:
+		entry_86()
 
 def entry_87():
 	print("""You are fighting three goblins!
-GOBLINS: 17
-You:	 11
-D:		 1d6
-hp:		 5 each
+GOBLINS:	17
+You:		11
+D:		1d6
+hp:		5 each
 Remember to make three rolls for the monsters; each one gets a swing after you take yours.
 Use the checklist to be sure that you are running the battle correctly. 
 1. If you decide to run away.
