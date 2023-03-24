@@ -1,31 +1,37 @@
 from sys import exit
 import os
 
+
 # These lists allow us to track if the player has already completed an encounter in a given area.
 encountered_areas = []
+treasure_collected = {
+	'gp': [],
+	'ep': [],
+	'sp': [],
+	'cp': [],
+	'gems': []
+}
+character_xp = []
 listen = []
 search = []
 key = False
 entry_map = []
 experience_points = {
-	"Giant Rats": "5 each",
-	"Goblins": "5 each",
-	"Skeletons": "10 each",
+	"Giant Rat": "5",
+	"Goblin": "5",
+	"Skeleton": "10",
 	"Rust Monster": "300"
 }
 
 def entry_1():
 	entry_map.append("entry 1 map")
 	print("""
-The room you are in is fifty feet square, with 10' wide exits in the middle of 
-the north, south, east, and west walls. The ceiling of the room is 15' up, but 
-the corridors are only 10' tall. The walls, floor, and ceiling are made of 
-rough rock. There are some cracks and crevices in the rock walls, all very small.
-Standing in the exact center of the room is a stone statue of a woman in armor. 
-You examine it carefully, and finally even touch it — but it is merely a statue,
-nothing magical or special. You have entered this 50' square room by the southern
-corridor, which leads out to fresh air and sunlight. The other corridors are dark.
-The light from your lamp helps, but shadows linger in the corners of this large room.
+The room you are in is fifty feet square, with 10' wide exits in the middle of the north, south, east, and west walls. 
+The ceiling of the room is 15' up, but the corridors are only 10' tall. The walls, floor, and ceiling are made of rough
+rock. There are some cracks and crevices in the rock walls, all very small. Standing in the exact center of the room is
+a stone statue of a woman in armor. You examine it carefully, and finally even touch it — but it is merely a statue, nothing
+magical or special. You have entered this 50' square room by the southern corridor, which leads out to fresh air and sunlight.
+The other corridors are dark. The light from your lamp helps, but shadows linger in the corners of this large room.
 Do you want to:
 1. Stop and listen?
 2. Search the room?
@@ -48,7 +54,8 @@ Do you want to:
 		entry_1()
 
 def entry_2():
-	print("""You are back outside!
+	print("""
+You are back outside!
 1. Go back inside.
 2. Go shopping for supplies.
 3. Quit the adventure; your fighter goes back to town.""")
@@ -105,21 +112,21 @@ def entry_6():
 
 def entry_7():
 	print("You turn the corner and follow the passage back to a room.")
-	print(" Press any key to continue...")
+	print("Press any key to continue...")
 	input()
 	os.system('cls' if os.name=='nt' else 'clear')
 	entry_9()
 
 def entry_8():
 	entry_map.append("entry 8 map")
-	print("""After the turn, the corridor goes 50' west and opens into a room.
-Add Entry 8 Map and press any key to continue:""")
+	print("After the turn, the corridor goes 50' west and opens into a room. Press any key to continue:")
 	input()
 	os.system('cls' if os.name=='nt' else 'clear')
 	entry_54()
 
 def entry_9():
-	print("""You may go one of three ways. Do you want to:
+	print("""
+You may go one of three ways. Do you want to:
 1. Go North?
 2. Go East?
 3. Go back to the Statue room?""")
@@ -144,33 +151,34 @@ def entry_10():
 		entry_9()
 	else:
 		print("""
-The corridor goes 20' north from the room and then turns right. You peek around the corner, and see that the corridor
-goes 20' and opens into another room. Press any key to continue...""")
+The corridor goes 20' north from the room and then turns right. You peek around the corner, and see that the corridor goes 20'
+and opens into another room. Press any key to continue...""")
 		input()
 		os.system('cls' if os.name=='nt' else 'clear')
 		entry_54()
 
 def entry_11():
-	print("""You quietly approach the room, and you don't see anything unusual.
-But as you step into the room, some giant rats leap out from the corner to your right, and attack!
-Two of them hit you, for a total of 3 points of damage.
-You are suddenly in battle, and cannot escape.""")
+	print("""
+You quietly approach the room, and you don't see anything unusual. But as you step into the room, some giant rats leap out
+from the corner to your right, and attack! Two of them hit you, for a total of 3 points of damage. You are suddenly in battle,
+and cannot escape.""")
 	print("Press any key to continue:")
 	input()
 	os.system('cls' if os.name=='nt' else 'clear')
 	entry_83()
 
 def entry_12():
-	print("""Talking to the creature doesn't do any good. It attacks, and gets one free swing while you are talking!
-Give the monster one free attack and press any key to run the battle normally...""")
+	print("""
+Talking to the creature doesn't do any good. It attacks, and gets one free swing while you are talking! Give the monster one 
+free attack and press any key to run the battle normally...""")
 	input()
 	os.system('cls' if os.name=='nt' else 'clear')
 	entry_86()
 
 def entry_13():
-	print("""You kill the two skeletons! As each one "dies," its bones collapse in a heap, and the rusty sword drops to the floor with a clang.
-You search the area, but find no treasure. However, there is a door in the east wall of the room.
-Do you want to:
+	print("""
+You kill the two skeletons! As each one "dies," its bones collapse in a heap, and the rusty sword drops to the floor with a clang.
+You search the area, but find no treasure. However, there is a door in the east wall of the room. Do you want to:
 1. Go South?
 2. Open the door?""")
 	choice = input("> ")
@@ -207,18 +215,16 @@ def entry_15():
 	if "skeletons" in encountered_areas:
 		entry_61()
 	else:
-		print("""The area looks like Entry 15 Map (add it to your map):
-The corridor goes north and opens into a room.
-As you peer into the room, you see two skeletons with rusty swords standing about 10' from you,
-around the corner. Without making a sound, they step forward, grinning horribly, and swing at you.
-One of them hits, for 2 points of damage. Press any key to continue the battle...""")
+		print("""
+The corridor goes north and opens into a room. As you peer into the room, you see two skeletons with rusty swords standing about
+10' from you, around the corner. Without making a sound, they step forward, grinning horribly, and swing at you. One of them hits,
+for 2 points of damage. Press any key to continue the battle...""")
 	input()
 	os.system('cls' if os.name=='nt' else 'clear')
 	entry_26()
 
 def entry_16():
-	print("""You are leaving the Rust Monster room, heading west.
-Have you mapped this part of the dungeon yet? (y/n)""")
+	print("You are leaving the Rust Monster room, heading west. Have you mapped this part of the dungeon yet? (y/n)")
 	choice = input("> ").lower()
 
 	if choice == "y":
@@ -227,25 +233,26 @@ Have you mapped this part of the dungeon yet? (y/n)""")
 		entry_62()
 
 def entry_17():
-	print("""The corridor goes north 30', and then there is a side passage to the left (west).
-The main corridor continues another 30' and then turns left.
-When you get to the side passage, you see that it goes 10' west and opens into a strange room.""")
+	print("""
+The corridor goes north 30', and then there is a side passage to the left (west). The main corridor continues another 30' and 
+then turns left. When you get to the side passage, you see that it goes 10' west and opens into a strange room.""")
 	print("Press any key to continue:")
 	input()
 	os.system('cls' if os.name=='nt' else 'clear')
 	entry_49()
 
 def entry_18():
-	print("""You carefully enter the room, and see two goblins in a far corner. They have swords, and seem to be expecting you.
-They attack, and each gets a free swing before you can react.
-Give each goblin one free swing to start and press any key to run the battle normally...""")
+	print("""
+You carefully enter the room, and see two goblins in a far corner. They have swords, and seem to be expecting you. They attack,
+and each gets a free swing before you can react. Give each goblin one free swing to start and press any key to run the battle normally...""")
 	input()
 	os.system('cls' if os.name=='nt' else 'clear')
 	entry_85()
 
 def entry_19():
-	print("""You think that there are goblins up here, so you keep your lantern shuttered and sneak up to peek into the room.
-You hear soft talking in a language you don't understand. Peeking around the corner, you see two goblins to your right, at the south end of the room.
+	print("""
+You think that there are goblins up here, so you keep your lantern shuttered and sneak up to peek into the room. You hear soft
+talking in a language you don't understand. Peeking around the corner, you see two goblins to your right, at the south end of the room.
 They seem to be talking about something and don't notice you. Do you want to:
 1. Go back?
 2. Talk to them?
@@ -266,9 +273,9 @@ They seem to be talking about something and don't notice you. Do you want to:
 		entry_19()
 
 def entry_20():
-	print("""You decide to leave the goblins alone.
-But as you start to back off, the goblin you have been talking to draws its sword and attacks!
-The other one leaves, going north and turning left. Do you want to:
+	print("""
+You decide to leave the goblins alone. But as you start to back off, the goblin you have been talking to draws its sword and 
+attacks! The other one leaves, going north and turning left. Do you want to:
 1. Fight the goblin?
 2. Run away?
 3. Keep talking?""")
@@ -292,16 +299,18 @@ def entry_21():
 		entry_52()
 	else:
 		entry_map.append("entry 21 map")
-		print("""Starting from the north wall of this room, the corridor goes 10' north, turns left (west) and goes 10' further,
-opening into the east wall of another room. There are more goblins here!
-But when they see you, they shriek and run through a stout door on the north wall, slamming it behind them.
-The room looks like Entry 21 Map (add it to your map):
-You search the room carefully and find one small bag by the door, apparently dropped by one of the goblins.
-The bag contains 10 sp, 5 gp, and — a key! Now do you want to:
+		print("""
+Starting from the north wall of this room, the corridor goes 10' north, turns left (west) and goes 10' further, opening into 
+the east wall of another room. There are more goblins here! But when they see you, they shriek and run through a stout door on
+the north wall, slamming it behind them. You search the room carefully and find one small bag by the door, apparently dropped 
+by one of the goblins. The bag contains 10 sp, 5 gp, and — a key! Now do you want to:
 1. Open the door?
 2. Go back?""")
 	global key
+	global treasure_collected
 	key = True
+	treasure_collected['sp'].append(10)
+	treasure_collected['gp'].append(5)
 	choice = input("> ")
 	
 	if choice == "1":
@@ -320,7 +329,6 @@ def entry_22():
 		entry_39()
 	else:
 		print("""
-The room looks like Entry 22 Map (add it to your map):
 You enter the strange room to investigate. The room is empty and clean, and the only feature is the orange mouth on the
 far wall, about 8' long. You search the room, listening and looking carefully, but you find nothing. Suddenly, as you are
 about to leave, the lips of the giant mouth move, and in a big booming bass voice it says, "Surprise! You are here for 
@@ -340,8 +348,8 @@ def entry_23():
 
 def entry_24():
 	print("""
-The mouth laughs and says "Come back again some time!" The invisible barrier is gone, and you can leave the room.
-You cannot find anything more here, nor will the mouth speak to you again.""")
+The mouth laughs and says "Come back again some time!" The invisible barrier is gone, and you can leave the room. You cannot 
+find anything more here, nor will the mouth speak to you again.""")
 	print("Press any key to continue...")
 	input()
 	encountered_areas.append("mouth")
@@ -380,9 +388,6 @@ def entry_26():
 		entry_26()
 
 def entry_27():
-	# print("""You carefully examine the door, and fine nothing strange about it. There is a keyhole in it. Have you found a key? (y/n)""")
-	# choice = input("> ").lower()
-	
 	if key == True:
 		os.system('cls' if os.name=='nt' else 'clear')
 		entry_80()
@@ -391,9 +396,9 @@ def entry_27():
 		entry_46()
 
 def entry_28():
-	print("""The corridor goes only 10' west before connecting to another corridor heading north;
-the main corridor continues west, into darkness.
-The north corridor goes 30' and opens into a room. Do you want to:
+	print("""
+The corridor goes only 10' west before connecting to another corridor heading north; the main corridor continues west, into 
+darkness. The north corridor goes 30' and opens into a room. Do you want to:
 1. Go North?
 2. Continue West?""")
 	choice = input("> ")
@@ -463,8 +468,8 @@ As you keep talking to the goblin you see 3 more coming from the north. They loo
 
 def entry_35():
 	print("""
-Although you try to talk to them, the goblins are ferocious and ready for a fight.
-One swings and hits you, for 2 points of damage. Do you want to:
+Although you try to talk to them, the goblins are ferocious and ready for a fight. One swings and hits you, for 2 points of damage. 
+Do you want to:
 1. Run away?
 2. Fight?""")
 	choice = input("> ").lower()
@@ -540,8 +545,8 @@ def entry_42():
 
 def entry_43():
 	entry_map.append("entry 43 map")
-	print("""The corridor goes 20' to the west and opens into a room, which looks like Entry 43 Map (add it to your map):
-The room is empty, except for a few small piles of reddish dust. Do you want to:
+	print("""The corridor goes 20' to the west and opens into a room. The room is empty, except for a few small piles of reddish
+dust. Do you want to:
 1. Go back?
 2. Continue?""")
 	choice = input("> ").lower()
@@ -558,18 +563,19 @@ The room is empty, except for a few small piles of reddish dust. Do you want to:
 
 def entry_44():
 	print("""
-As you approach a room, a giant rat jumps out of the shadows and bites you!
-You see 2 more giant rats in the room. Take 2 points of damage, and press any key to continue...""")
+As you approach a room, a giant rat jumps out of the shadows and bites you! You see 2 more giant rats in the room. Take 2 
+points of damage, and press any key to continue...""")
 	print("")
 	input()
 	os.system('cls' if os.name=='nt' else 'clear')
 	entry_83()
 
 def entry_45():
-	print("""You go into the room and look around. There is nothing here but the reddish dust.
-When you look closely at the dust, however, you realize that it's rust!
-You hear a snort, and when you look up, you see a strange looking creature coming into the room from the western corridor.
-It looks like a giant armadillo with a long tail, and has 2 feathery feelers on the front. It charges at you! Do you want to:
+	print("""
+You go into the room and look around. There is nothing here but the reddish dust. When you look closely at the dust, however, 
+you realize that it's rust! You hear a snort, and when you look up, you see a strange looking creature coming into the room 
+from the western corridor. It looks like a giant armadillo with a long tail, and has 2 feathery feelers on the front. It charges
+at you! Do you want to:
 1. Talk to it?
 2. Run away?
 3. Fight?""")
@@ -589,8 +595,8 @@ It looks like a giant armadillo with a long tail, and has 2 feathery feelers on 
 		entry_45()
 
 def entry_46():
-	print("""You try to bash the door open without using a key, but without success.
-The solid door remains securely closed.
+	print("""
+You try to bash the door open without using a key, but without success. The solid door remains securely closed.
 You eventually give up, passing the scattered skeleton bones as you head out to the main corridor.""")
 	print("Press any key to continue...")
 	input()
@@ -598,7 +604,8 @@ You eventually give up, passing the scattered skeleton bones as you head out to 
 	entry_62()
 
 def entry_47():
-	print("You try to Turn the skeletons like the cleric Aleena Turned the ghouls, but nothing happens. It's a special talent that clerics have, not fighters. Each skeleton swings at you again, but they both miss.")
+	print("""You try to Turn the skeletons like the cleric Aleena Turned the ghouls, but nothing happens. It's a special talent
+that clerics have, not fighters. Each skeleton swings at you again, but they both miss.""")
 	print("Press any key to continue...")
 	input()
 	os.system('cls' if os.name=='nt' else 'clear')
@@ -684,11 +691,11 @@ def entry_53():
 	if "entry 53 map" in entry_map:
 		entry_38()
 	else:
-		print("""If you have already mapped this of the dungeon, read 38. If not, continue:
-The corridor goes 50' east from the room and then turns right, to the south.
-Peering around the corner, you see that the corridor goes 30' south, and a side passage then opens to the west.
-When you get to that point, you see that the side passage goes 10' west and opens into another room,
-with blue walls and a huge orange mouth on the opposite wall. Add Entry 53 Map to your map and press any key to continue...""")
+		print("""
+If you have already mapped this of the dungeon, read 38. If not, continue: The corridor goes 50' east from the room and then 
+turns right, to the south. Peering around the corner, you see that the corridor goes 30' south, and a side passage then opens
+to the west. When you get to that point, you see that the side passage goes 10' west and opens into another room, with blue 
+walls and a huge orange mouth on the opposite wall. Add Entry 53 Map to your map and press any key to continue...""")
 	input()
 	os.system('cls' if os.name=='nt' else 'clear')
 	entry_49()
@@ -722,12 +729,13 @@ def entry_56():
  
 def entry_57():
 	entry_map.append("entry 57 map")
-	print("""You search the room carefully, and you find a small scrap of paper in a niche (small hole) in one wall.
+	print("""
+You search the room carefully, and you find a small scrap of paper in a niche (small hole) in one wall.
 Opening it, you discover a note, written in the Common tongue:
 		RATS EAST
 		GOBLINS NORTH
-		BEWARE WEST!""")
-	print("""You can also see parts of the corridors leading out of the room, which look like Entry 57 Map.
+		BEWARE WEST!
+You can also see parts of the corridors leading out of the room, which look like Entry 57 Map.
 You find nothing else in the room.""")
 	print("Press any key to continue...")
 	input()
@@ -759,9 +767,9 @@ def entry_58():
 		entry_58()
 
 def entry_59():
-	print("""As you approach the room, you hear more squeaks.
-You wisely shutter your lantern, leaving only a dim reddish glow, and peek into the room.
-You see three giant rats scurrying around and some scattered treasure nearby. Do you want to:
+	print("""
+As you approach the room, you hear more squeaks. You wisely shutter your lantern, leaving only a dim reddish glow, and peek
+into the room. You see three giant rats scurrying around and some scattered treasure nearby. Do you want to:
 1. Go back?
 2. Talk to them?
 3. Try to scare them?
@@ -784,15 +792,15 @@ You see three giant rats scurrying around and some scattered treasure nearby. Do
 		entry_59()
 
 def entry_60():
-	print("""Your armor, shield, sword, and dagger have all been turned to rust by the fearsome Rust Monster!
-But now that you have no more metal, the creature turns away from you, not interested any more.
-You can see, now, that it has no teeth or claws, and can't actually hurt you!
-You watch as it ambles over to one of the piles of rust, and it starts to eat, ignoring you completely.
-Keeping a careful eye on the creature, you look around the room.
-There are gems here and there, some covered by rust; you collect six of them!
-Their total value is 300 gp. Since you are unprotected and unarmed, you go east to the first room and then go outside, heading for town.
-To find how many Experience Points you have earned, read 88. You will also have to go shopping for more armor and weapons.
-The shopping list is given in 89.""")
+	print("""
+Your armor, shield, sword, and dagger have all been turned to rust by the fearsome Rust Monster! But now that you have no more
+metal, the creature turns away from you, not interested any more. You can see, now, that it has no teeth or claws, and can't 
+actually hurt you! You watch as it ambles over to one of the piles of rust, and it starts to eat, ignoring you completely.
+Keeping a careful eye on the creature, you look around the room. There are gems here and there, some covered by rust; you collect
+six of them! Their total value is 300 gp. Since you are unprotected and unarmed, you go east to the first room and then go outside,
+heading for town. To find how many Experience Points you have earned, read 88. You will also have to go shopping for more armor and
+weapons. The shopping list is given in 89.""")
+	treasure_collected['gems'].append(300)
 
 def entry_61():
 	if "treasure" in encountered_areas:
@@ -807,7 +815,8 @@ def entry_61():
 #If you want to investigate the door in this room, read 27.""")  
 
 def entry_62():
-	print("""You are at an intersection of the corridor to the north and the east-west corridor. Do you want to:
+	print("""
+You are at an intersection of the corridor to the north and the east-west corridor. Do you want to:
 1. Go North
 2. Go East
 3. Go West""")
@@ -826,17 +835,19 @@ def entry_62():
 		entry_62()
 
 def entry_63():
-	print("""You leap out and attack the goblins! You will get two free swings before they can get their swords out.
-Take your 2 free attacks and press any key to run the battle normally...""")
+	print("""
+You leap out and attack the goblins! You will get two free swings before they can get their swords out. Take your 2 free attacks
+and press any key to run the battle normally...""")
 	input()
 	os.system('cls' if os.name=='nt' else 'clear')
 	entry_85()
 
 def entry_64():
-	print("""You attack the goblin. Your first swing misses, and the goblin misses you.
-But you see, coming from the north corridor, two more goblins, waving swords and looking very angry. Do you want to:
-1. Keep fighting?Read 87
-2. Run away?Read 73""")
+	print("""
+You attack the goblin. Your first swing misses, and the goblin misses you. But you see, coming from the north corridor, two more
+goblins, waving swords and looking very angry. Do you want to:
+1. Keep fighting?
+2. Run away?""")
 	choice = input("> ")
 
 	if choice == "1":
@@ -849,13 +860,16 @@ But you see, coming from the north corridor, two more goblins, waving swords and
 		entry_64()
 
 def entry_65():
-	print("""You have won the great goblin fight. Congratulations! It was a tough battle for one lonely fighter.
-Don't forget that you started the adventure with a Potion of Healing, which can cure all your damage if you haven't already used it.
-Searching the area, you find 100 sp and 50 gp in small sacks that the goblins were carrying.
-Their swords look rusty and worthless, and they have nothing else of value. Do you want to:
+	print("""
+You have won the great goblin fight. Congratulations! It was a tough battle for one lonely fighter. Don't forget that you started
+the adventure with a Potion of Healing, which can cure all your damage if you haven't already used it. Searching the area, you 
+find 100 sp and 50 gp in small sacks that the goblins were carrying. Their swords look rusty and worthless, and they have nothing
+else of value. Do you want to:
 1. Go west?
 2. Go north?
 3. Go east?""")
+	treasure_collected['sp'].append(100)
+	treasure_collected['gp'].append(50)
 	choice = input("> ")
 
 	if choice == "1":
@@ -871,9 +885,10 @@ Their swords look rusty and worthless, and they have nothing else of value. Do y
 		entry_65()
 
 def entry_66():
-	print("""You try to open the door, but without success. Your key doesn't seem to work.
-You hear a goblin voice say from the other side, in Common, "Go away! We don't want any!"
-You may keep trying, if you wish, but the goblins seem to have barred the door. You must eventually go back.""")
+	print("""
+You try to open the door, but without success. Your key doesn't seem to work. You hear a goblin voice say from the other side,
+in Common, "Go away! We don't want any!" You may keep trying, if you wish, but the goblins seem to have barred the door. You must
+eventually go back.""")
 	print("Press any key to continue...")
 	input()
 	os.system('cls' if os.name=='nt' else 'clear')
@@ -1022,6 +1037,9 @@ def entry_78():
 Searching the room, you find 100 cp and 100 sp scattered in the messy rat lair, and you put them in the sacks that you are carrying. Now do you want to:
 1. Go North?
 2. Go West?""")
+	treasure_collected['cp'].append(100)
+	treasure_collected['sp'].append(100)
+	
 	choice = input("> ")
 
 	if choice == "1":
@@ -1061,34 +1079,37 @@ def entry_79():
 def entry_80():
 	entry_map.append("entry 80A map")
 	entry_map.append("entry 80B map")
-	print("""You put the key in the lock and turn until you hear it "click." Putting the key away you open the door.
-There is a small room behind the door! The area looks like Entry 80A Map (add it to your map):
-The room is empty except for one large chest by one wall. You walk over to it, and discover that it's made of heavy wood with metal bands around it.
-It isn't locked (luckily), so you carefully open it. But alas — it's trapped. Make a saving throw vs. Magic Wands! (You need to roll a 13 or higher on 1d20.)
-This Saving Throw is used for many things. Generally, it indicates whether you jump out of the path of danger — such as the beam of a magic wand.
-However, in this case, the danger is a blade, mounted on the edge of the chest and connected to a metal spring.
-When you open the lid, the blade sweeps out toward you.
-If you made the Saving Throw, you jump back as the blade misses you. However, if you missed the Saving Throw, you take 4 points of damage!
-If you are struck down to zero hit points or less, you can grab your potion — if you still have it — and drink it before you pass out.
-It will cure you somewhat, but only back up to 4 hit points. If you don't have the potion left — sorry, but you are dead!
-(Special note: In group games, you will not be allowed to do this. Zero hit points indicates death, with no extra time to do anything.)
-If the trap kills you, read 90. But if you survived the trap, continue reading. You look in the chest and see hundreds of coins — 500 cp, 200 sp, and 200 ep.
-You start to close the chest and drag it out with you. But as you close the lid, you see a peep hole in the north wall, about an inch across.
-It was blocked by the door as you entered.
-You look through, and see a short corridor that goes north 20' and turns left. To the east, by the turn, is a large door with two stout bars across it.
-A goblin is standing by the door, apparently on guard. The area looks like Entry 80B Map.
-There is a crack in the wall near this peep hole. You suddenly realize that the crack might be the edge of a secret door!
-This treasure chest must belong to goblins!
-However, you can't open the secret door, so you drag the chest back out, past the scattered bones of the dead skeletons and south to the main corridor.""")
+	print("""
+You put the key in the lock and turn until you hear it "click." Putting the key away you open the door. There is a small room 
+behind the door! The room is empty except for one large chest by one wall. You walk over to it, and discover that it's made of
+heavy wood with metal bands around it. It isn't locked (luckily), so you carefully open it. But alas — it's trapped. Make a 
+saving throw vs. Magic Wands! (You need to roll a 13 or higher on 1d20.) This Saving Throw is used for many things. Generally,
+it indicates whether you jump out of the path of danger — such as the beam of a magic wand. However, in this case, the danger is
+a blade, mounted on the edge of the chest and connected to a metal spring. When you open the lid, the blade sweeps out toward you. 
+If you made the Saving Throw, you jump back as the blade misses you. However, if you missed the Saving Throw, you take 4 points 
+of damage! If you are struck down to zero hit points or less, you can grab your potion — if you still have it — and drink it before
+you pass out. It will cure you somewhat, but only back up to 4 hit points. If you don't have the potion left — sorry, but you are dead!
+(Special note: In group games, you will not be allowed to do this. Zero hit points indicates death, with no extra time to do anything.) 
+If the trap kills you, read 90. But if you survived the trap, continue reading. You look in the chest and see hundreds of coins — 
+500 cp, 200 sp, and 200 ep. You start to close the chest and drag it out with you. But as you close the lid, you see a peep hole in the
+north wall, about an inch across. It was blocked by the door as you entered. You look through, and see a short corridor that goes north 
+20' and turns left. To the east, by the turn, is a large door with two stout bars across it. A goblin is standing by the door, apparently
+on guard. The area looks like Entry 80B Map. There is a crack in the wall near this peep hole. You suddenly realize that the crack might 
+be the edge of a secret door! This treasure chest must belong to goblins! However, you can't open the secret door, so you drag the chest 
+back out, past the scattered bones of the dead skeletons and south to the main corridor.""")
+	treasure_collected['cp'].append(500)
+	treasure_collected['sp'].append(200)
+	treasure_collected['ep'].append(200)
 	print("Press any key to continue...")
 	input()
 	os.system('cls' if os.name=='nt' else 'clear')
 	entry_62()
 
 def entry_81():
-	print("""Oops! As you enter the room, the Rust Monster looks up from its feeding, grunts, and runs toward you.
-It rushes to the chest you are dragging, and before you can escape, it dissolves the metal bands around the chest.
-The chest comes apart, coins falling everywhere, and the creature gleefully turns all the coins to rust! Do you want to:
+	print("""
+Oops! As you enter the room, the Rust Monster looks up from its feeding, grunts, and runs toward you. It rushes to the chest you are dragging,
+and before you can escape, it dissolves the metal bands around the chest. The chest comes apart, coins falling everywhere, and the creature 
+gleefully turns all the coins to rust! Do you want to:
 1. Go East?
 2. Go West?
 3. Attack the creature?""")
@@ -1132,7 +1153,7 @@ GIANT RATS:	17
 You:		10
 D:		1d3
 hp:		2 each
-Run the battle normally, using the Combat Checklist to be sure that you are doing it correctly. If you don't remember what "Id3" means, read the section on "Dice" again (page 12).
+Run the battle normally, using the Combat Checklist to be sure that you are doing it correctly. If you don't remember what "1d3" means, read the section on "Dice" again (page 12).
 All the rats will fight until dead. If you decide to run away, one rat will bite you as you turn to run (roll for damage). But then, if you are still alive, you can go back to the statue room. If so, read 58.
 1. If you kill all the rats.
 2. If the rats kill you""")
@@ -1268,21 +1289,20 @@ Use the checklist to be sure that you are running the battle correctly.
 		entry_87()
 
 def entry_88():
-	print("""When you complete this adventure, you get Experience Points.
-First, add up all the treasure you brought out of the dungeon (ignore anything you lost), and figure out how much it is all worth, in gold pieces.
-You will get 1 XP for each 1 gp worth of treasure you find — in addition to getting the treasure.
-After adding up the treasure, find out how much Experience you get for slaying monsters, according to this chart:
+	print("""
+When you complete this adventure, you get Experience Points. First, add up all the treasure you brought out of the dungeon
+(ignore anything you lost), and figure out how much it is all worth, in gold pieces. You will get 1 XP for each 1 gp worth
+of treasure you find — in addition to getting the treasure. After adding up the treasure, find out how much Experience you 
+get for slaying monsters, according to this chart:
 Giant Rats --> 5 each
 Goblins --> 5 each
 Skeletons --> 10 each
 Rust Monster --> 300
-Add that total to your treasure total to get the total number of Experience Points awarded for this adventure.
-To determine your +10% bonus, drop the last number, and add it to the total awarded.
-Then add the adjusted total XP earned to the current XP on the back of your character sheet, to find your new total overall.
-To finish up, add the treasure you found to the money you already had.
-Example: Imagine that you killed the Rust Monster and found 6 gems there, with a value of 600 gp.
-You also killed 3 giant rats, finding 100 cp and 100 sp. Imagine that you have no other notes.
-Looking on the conversion chart, you see that 100 cp = 1 gp; 100 sp = 10 gp.
+Add that total to your treasure total to get the total number of Experience Points awarded for this adventure. To determine 
+your +10% bonus, drop the last number, and add it to the total awarded. Then add the adjusted total XP earned to the current
+XP on the back of your character sheet, to find your new total overall. To finish up, add the treasure you found to the money
+you already had. Example: Imagine that you killed the Rust Monster and found 6 gems there, with a value of 600 gp. You also 
+killed 3 giant rats, finding 100 cp and 100 sp. Imagine that you have no other notes. Looking on the conversion chart, you see that 100 cp = 1 gp; 100 sp = 10 gp.
 Adding that to the gem value, your newly found treasure is worth a total of 611 gp.
 For monsters, you get 300 XP for the rust monster, plus 15 XP for the giant rats (5 each).
 That total is 315. Adding it to the 611 for treasure, your total XP award is 926.
@@ -1334,12 +1354,11 @@ rations = {
 (Note: There are more weapons and equipment available in group adventures. See the complete list in the center of this book.)""")  
 
 def entry_90():
-	print("""Your character has been lost in the dungeon.
-Don't be upset; it can happen in any DUNGEONS & DRAGONS game, and often does, through no fault of yours.
-That is the end of this adventure. You may start over, if you wish.
-To do that, be sure not to keep any treasure you may have found before you died.
-The character should have exactly the same equipment, treasure, and hit points as when you started this adventure.
-In other words, you start over.
+	print("""
+Your character has been lost in the dungeon. Don't be upset; it can happen in any DUNGEONS & DRAGONS game, and often does, 
+through no fault of yours. That is the end of this adventure. You may start over, if you wish. To do that, be sure not to keep
+any treasure you may have found before you died. The character should have exactly the same equipment, treasure, and hit points
+as when you started this adventure. In other words, you start over.
 1. Start over.
 Press any other key to exit the game.""")
 	
@@ -1357,8 +1376,3 @@ entry_1()
 # Tasks:
 # Done - Make a variable to check if the monsters have been killed. If not conduct battle. If so, check if treasure has been taken.
 # Create a way to escape out of the game at any point by hitting the esc key or q key.
-# 
-# 
-# 
-# 
-# Th!$ l!n3 !s 0n!y h3r3 f0r n3rd cr3d!
