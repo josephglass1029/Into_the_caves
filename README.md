@@ -42,7 +42,7 @@ Monsters will also be able to do more damage. In your one-player games, you will
 Some monsters do 1-6 points of damage, just as you do. But sometimes they do more or less than 1d6. Each time you encounter a monster, the information you need will be given in a box, like this:
 GOBLIN: 17
 You: 12
-D: Id6
+D: 1d6
 hp: 4
 The number after the monster's name is the roll it needs to hit your fighter. "D" is the dice to roll after the monster hits, to find the amount of damage it did to you. The monster's hit points are also given.
 In this example, if you roll a 12 or higher, you hit the goblin. You then roll 1d6, the standard amount, and add 2 (for your Strength bonus). You subtract that total from the goblin's 4 hp (as given above). If the goblin's new total is zero or less, the creature is dead. If the goblin still has any hit points left, it swings at you:
