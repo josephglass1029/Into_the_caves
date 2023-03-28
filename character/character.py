@@ -29,7 +29,7 @@ class DnDCharacter:
         intelligence = cls.roll_stat()
         wisdom = cls.roll_stat()
         charisma = cls.roll_stat()
-        hit_points = DnDCharacter.roll_hp()
+        hit_points = cls.roll_hp()
         experience_points = 0
         return cls(name, strength, dexterity, constitution, intelligence, wisdom, charisma, hit_points, experience_points)
         
@@ -64,7 +64,7 @@ class DnDCharacter:
 
     @pp.setter
     def pp(self, value):
-        self.money["pp"] = value
+        self.money["pp"] = value 
 
     @property
     def gp(self):
@@ -108,7 +108,7 @@ new_character = DnDCharacter.create_new_character()
 print(new_character.name)
 
 # Store character information in variables
-playerName = new_character.name
+# playerName = new_character.name
 playerClass = new_character.get_title()
 playerStrength = new_character.strength
 playerDexterity = new_character.dexterity
@@ -128,7 +128,7 @@ playerCP = new_character.cp
 # playerGemValue = new_character.GemValue
 
 def character_sheet():
-    print(f"Name: {playerName}; Class: {playerClass}")
+    print(f"Name: {new_character.name}; Class: {playerClass}")
     print(f"Ability Scores: STR: {playerStrength}; DEX: {playerDexterity}; CON: {playerConstitution}; INT: {playerIntelligence}; WIS: {playerWisdom}; CHR: {playerCharisma}")
     print(f"hp: {playerHitPoints}")
     print(f"""Saving Throws:
@@ -138,7 +138,8 @@ def character_sheet():
       Dragon Breath: {playerSavingThrows[3]}
       Rods, Staves, or Spells: {playerSavingThrows[4]}""")
     print(f"XP: {playerExperience}")
-    print(f"PP: {playerPP}; GP: {playerGP}; EP: {playerEP}; SP: {playerSP}; CP: {playerCP}")
+    #print(f"PP: {playerPP}; GP: {playerGP}; EP: {playerEP}; SP: {playerSP}; CP: {playerCP}")
+    print(f"GP: {playerGP}; EP: {playerEP}; SP: {playerSP}; CP: {playerCP}")
     #print(f"Gems: {playerGems}; Gems Value: {playerGemValue}")
 
 character_sheet()
