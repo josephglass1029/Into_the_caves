@@ -1,6 +1,6 @@
 # Into_the_caves
-# Joe Glass
-# 3/28/2023
+Joe Glass
+3/28/2023
 
 This project is a digital recreation of the 1983 Basic Dungeons & Dragons (Red Box) rules solo adventure by the same name: Into the caves.
 
