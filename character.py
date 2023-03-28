@@ -1,6 +1,12 @@
 import random
 
 class DnDCharacter:
+    TITLE_MAPPING = {
+        0: "Veteran",
+        2000: "Warrior",
+        4000: "Swordmaster"
+    }
+    
     def __init__(self, name, strength, dexterity, constitution, intelligence, wisdom, charisma, hit_points, experience_points):
         self.name = name
         self.strength = strength
@@ -17,7 +23,6 @@ class DnDCharacter:
     @classmethod
     def create_new_character(cls):
         name = input("Enter character name: ").capitalize()
-        class_ = "Fighter"
         strength = cls.roll_stat()
         dexterity = cls.roll_stat()
         constitution = cls.roll_stat()
@@ -46,6 +51,12 @@ class DnDCharacter:
         db = int(15)
         rsos = int(16)
         return drp, mw, potts, db, rsos
+    
+    def get_title(self):
+        for exp, title in sorted(DnDCharacter.TITLE_MAPPING.items(), reverse=True):
+            if self.experience_points >= exp:
+                return title
+        return "Novice"
     
     @property
     def pp(self):
@@ -87,6 +98,8 @@ class DnDCharacter:
     def cp(self, value):
         self.money["cp"] = value
     
+    def add_experience(self, points):
+        self.experience_points += points
 
 # Create a new character
 new_character = DnDCharacter.create_new_character()
@@ -96,6 +109,7 @@ print(new_character.name)
 
 # Store character information in variables
 playerName = new_character.name
+playerClass = new_character.get_title()
 playerStrength = new_character.strength
 playerDexterity = new_character.dexterity
 playerConstitution = new_character.constitution
@@ -110,11 +124,11 @@ playerGP = new_character.gp
 playerEP = new_character.ep
 playerSP = new_character.sp
 playerCP = new_character.cp
-playerGems = new_character.Gems
-playerGemValue = new_character.GemValue
+# playerGems = new_character.Gems
+# playerGemValue = new_character.GemValue
 
 def character_sheet():
-    print(f"Name: {playerName}")
+    print(f"Name: {playerName}; Class: {playerClass}")
     print(f"Ability Scores: STR: {playerStrength}; DEX: {playerDexterity}; CON: {playerConstitution}; INT: {playerIntelligence}; WIS: {playerWisdom}; CHR: {playerCharisma}")
     print(f"hp: {playerHitPoints}")
     print(f"""Saving Throws:

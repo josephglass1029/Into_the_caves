@@ -1,6 +1,6 @@
 from sys import exit
 import os
-
+from character import *
 
 # These lists allow us to track if the player has already completed an encounter in a given area.
 encountered_areas = []
@@ -36,7 +36,6 @@ Do you want to:
 1. Stop and listen?
 2. Search the room?
 3. Go down a corridor?""")
-
 	choice = input("> ")
 
 	if choice == "1":
@@ -1033,10 +1032,12 @@ One of the giant rats runs off to the north, but the others attack you!""")
 	entry_83()
 
 def entry_78():
+	print(new_character.experience_points)
 	print("""You have won the battle with the giant rats!
 Searching the room, you find 100 cp and 100 sp scattered in the messy rat lair, and you put them in the sacks that you are carrying. Now do you want to:
 1. Go North?
 2. Go West?""")
+	character_sheet()
 	treasure_collected['cp'].append(100)
 	treasure_collected['sp'].append(100)
 	
@@ -1162,6 +1163,7 @@ All the rats will fight until dead. If you decide to run away, one rat will bite
 	if choice == "1":
 		os.system('cls' if os.name=='nt' else 'clear')
 		encountered_areas.append("rats")
+		new_character.add_experience(15)
 		entry_78()
 	elif choice == "2":
 		os.system('cls' if os.name=='nt' else 'clear')
@@ -1371,6 +1373,8 @@ Press any other key to exit the game.""")
 		exit(0)
 
 os.system('cls' if os.name=='nt' else 'clear')
+
+# character_sheet()
 entry_1()
 
 # Tasks:
