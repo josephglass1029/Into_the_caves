@@ -1,16 +1,10 @@
 from sys import exit
 import os
 from character import *
+from money import *
 
 # These lists allow us to track if the player has already completed an encounter in a given area.
 encountered_areas = []
-treasure_collected = {
-	'gp': [],
-	'ep': [],
-	'sp': [],
-	'cp': [],
-	'gems': []
-}
 character_xp = []
 listen = []
 search = []
@@ -306,10 +300,10 @@ by one of the goblins. The bag contains 10 sp, 5 gp, and — a key! Now do you w
 1. Open the door?
 2. Go back?""")
 	global key
-	global treasure_collected
 	key = True
-	treasure_collected['sp'].append(10)
-	treasure_collected['gp'].append(5)
+	new_character.money.gp += 5
+	new_character.money.sp += 10
+	
 	choice = input("> ")
 	
 	if choice == "1":
@@ -867,8 +861,8 @@ else of value. Do you want to:
 1. Go west?
 2. Go north?
 3. Go east?""")
-	treasure_collected['sp'].append(100)
-	treasure_collected['gp'].append(50)
+	new_character.money.sp += 100
+	new_character.money.gp += 50
 	choice = input("> ")
 
 	if choice == "1":
@@ -1037,10 +1031,10 @@ def entry_78():
 Searching the room, you find 100 cp and 100 sp scattered in the messy rat lair, and you put them in the sacks that you are carrying. Now do you want to:
 1. Go North?
 2. Go West?""")
-	character_sheet()
-	treasure_collected['cp'].append(100)
-	treasure_collected['sp'].append(100)
-	
+	new_character.money.sp += 100
+	new_character.money.cp += 100
+	# print(f"You now have {new_character.money.pp} PP, {new_character.money.gp} GP, {new_character.money.ep} EP, {new_character.money.sp} SP, {new_character.money.cp} CP")
+	new_character.money.current_money()
 	choice = input("> ")
 
 	if choice == "1":
@@ -1163,7 +1157,6 @@ All the rats will fight until dead. If you decide to run away, one rat will bite
 	if choice == "1":
 		os.system('cls' if os.name=='nt' else 'clear')
 		encountered_areas.append("rats")
-		new_character.add_experience(15)
 		entry_78()
 	elif choice == "2":
 		os.system('cls' if os.name=='nt' else 'clear')
