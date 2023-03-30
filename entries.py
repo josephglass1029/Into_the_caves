@@ -322,7 +322,6 @@ def entry_56():
 	print("As you turn to run away, the monster quickly attacks, and gets in your way. You cannot retreat!")  
 
 def entry_57():
-	entry_map.append("entry 57 map")
 	print("""
 You search the room carefully, and you find a small scrap of paper in a niche (small hole) in one wall.
 Opening it, you discover a note, written in the Common tongue:
